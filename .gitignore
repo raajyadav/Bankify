@@ -1,0 +1,29 @@
+# Eclipse / Spring Tool Suite
+.metadata/
+.classpath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+# Maven
+target/
+
+# Java
+*.class
+
+# Logs
+*.log
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment / secrets
+.env
+*.env
