@@ -1,5 +1,6 @@
 package com.bankify.account.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.bankify.account.dto.AccountRequest;
@@ -16,4 +17,15 @@ public interface AccountService {
 	AccountResponse updateAccount(Long id, AccountRequest request);
 	
 	void deleteAccount(Long id);
+	
+	AccountResponse debitAccount(Long accountId, BigDecimal amount);
+	
+	AccountResponse creditAccount(Long accountId, BigDecimal amount);
+	
+	AccountResponse creditAccount(
+	        Long accountId,
+	        BigDecimal amount,
+	        String operationKey,
+	        String operationType
+	        );
 }

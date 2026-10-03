@@ -1,5 +1,6 @@
 package com.bankify.account.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bankify.account.dto.AccountRequest;
@@ -67,6 +69,32 @@ public class AccountController {
 		accountService.deleteAccount(id);
 
 		return ResponseEntity.noContent().build();
+	}
+
+	@PostMapping("/{id}/debit")
+	public ResponseEntity<AccountResponse> debitAccount(@PathVariable Long id, @RequestParam BigDecimal amount) {
+
+		AccountResponse response = accountService.debitAccount(id, amount);
+
+		return ResponseEntity.ok(response);
+	}
+
+	@PostMapping("/{id}/credit")
+	public ResponseEntity<AccountResponse> creditAccount(
+	        @PathVariable Long id,
+	        @RequestParam BigDecimal amount,
+	        @RequestParam String operationKey,
+	        @RequestParam String operationType) {
+
+	    AccountResponse response =
+	            accountService.creditAccount(
+	                    id,
+	                    amount,
+	                    operationKey,
+	                    operationType
+	            );
+
+	    return ResponseEntity.ok(response);
 	}
 
 }
